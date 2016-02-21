@@ -5,9 +5,9 @@ class Puzzle {
 	private int numberOfPeople;
 
 	Puzzle (int numberOfPeople) {
-		this.numberOfPeople = numberOfPeople;						// copy number of people
+		this.numberOfPeople = numberOfPeople;				// copy number of people
 		swordCarrier = 1;						// number of the person carrying the sword
-		people 	= new boolean[numberOfPeople + 1];				// array of people
+		people 	= new boolean[numberOfPeople + 1];			// array of people
 		people[0] = false; 						// extra space in array (unrequired)
 		for (int i = 1; i <= numberOfPeople; i++) {
 			people[i] = true;					// make everyone alive initially
@@ -34,7 +34,7 @@ class Puzzle {
 		swordCarrier = nextPersonAlive(swordCarrier);			// pass the sword to the next person standing
 	}
 
-	int numberOfPeopleAlive () {							// get the number of people still alive
+	int numberOfPeopleAlive () {					// get the number of people still alive
 		int c = 0;
 		for (int i = 1; i <= numberOfPeople; i++) {
 			c += (people[i])? 1 : 0;
