@@ -34,7 +34,7 @@ class Puzzle {
 		swordCarrier = nextPersonAlive(swordCarrier);			// pass the sword to the next person standing
 	}
 
-	int numberOfPeopleAlive () {					// get the number of people still alive
+	int numberOfPeopleAlive () {						// get the number of people still alive
 		int c = 0;
 		for (int i = 1; i <= numberOfPeople; i++) {
 			c += (people[i])? 1 : 0;
