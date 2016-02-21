@@ -39,14 +39,12 @@ class Puzzle {
 	}
 
 	void display () {
-		int lastAlive = 0;
 		for (int i = 1; i <= size; i++) {
-			lastAlive = (people[i])? i : lastAlive;
 			System.out.print(((people[i])? i : "X") + "\t");
 			System.out.print((i%10 == 0)? "\n" : "");
 		}
-		System.out.println("\n\nLast person alive : " + lastAlive );
-}
+		System.out.print("\n");
+	}
 
 	public static void main (String args[]) {
 		int size = (args.length == 2 || args.length == 1)? Integer.parseInt(args[0]) : 100;
