@@ -7,7 +7,7 @@ class Puzzle {
 	Puzzle (int size) {
 		this.size = size;
 		swordCarrier = 1;			// number of the person carrying the sword
-		people 	= new boolean[size + 1];	// array of people
+		people 	= new boolean[size + 1];		// array of people
 		people[0] = false; 			// unrequired person
 		for (int i = 1; i <= size; i++) {
 			people[i] = true;
