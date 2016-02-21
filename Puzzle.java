@@ -1,3 +1,20 @@
+/*
+ *  Program to calculate and display the solution of the sword puzzle, as mentioned in README.md
+ *
+ *  Usage :
+ *  	
+ *  	java Puzzle [number of people] [number of people to be kept alive]
+ *
+ *  
+ *  The program will print the number of the last person standing, unless more than one person is kept alive.
+ *  In that case, a rectangular array of numbers will be displayed, where :
+ *
+ *  	-number-	->	dead person
+ *  	 number		->	alive person
+ *  	[number]	->	person carrying the swordCarrier
+ *
+ */
+
 class Puzzle {
 
 	private int swordCarrier;
@@ -66,6 +83,7 @@ class Puzzle {
 			System.out.print("Person carrying the Sword (last person standing): " + p.getSwordCarrier() + "\n");
 		} else {
 			p.display();
+			System.out.print("\nPerson carrying the Sword : " + p.getSwordCarrier() + "\n");
 		}
 	}
 }
