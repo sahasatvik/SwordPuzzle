@@ -4,10 +4,10 @@ class Puzzle {
 	private boolean[] people;
 	private int size;
 
-	Puzzle (int size){
+	Puzzle (int size) {
 		this.size = size;
-		swordCarrier = 1;
-		people 	= new boolean[size + 1];
+		swordCarrier = 1;			// number of the person carrying the sword
+		people 	= new boolean[size + 1];	// array of people
 		people[0] = false; 			// unrequired person
 		for (int i = 1; i <= size; i++) {
 			people[i] = true;
@@ -50,7 +50,8 @@ class Puzzle {
 		int size = (args.length == 2 || args.length == 1)? Integer.parseInt(args[0]) : 100;
 		int alive = (args.length == 2)? Integer.parseInt(args[1]) : 1;
 		Puzzle p = new Puzzle(size);
-		while (p.peopleAlive() > alive) {
+		
+		while (p.peopleAlive() > alive) { 	// loop through people
 			p.killPersonAfterSwordCarrier();
 			p.passSword();
 		}
