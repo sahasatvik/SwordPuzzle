@@ -2,20 +2,24 @@ class Puzzle {
 
 	private int swordCarrier;
 	private boolean[] people;
-	private int size;
+	private int numberOfPeople;
 
-	Puzzle (int size) {
-		this.size = size;
-		swordCarrier = 1;			// number of the person carrying the sword
-		people 	= new boolean[size + 1];		// array of people
-		people[0] = false; 			// unrequired person
-		for (int i = 1; i <= size; i++) {
-			people[i] = true;
+	Puzzle (int numberOfPeople) {
+		this.numberOfPeople = numberOfPeople;						// copy number of people
+		swordCarrier = 1;						// number of the person carrying the sword
+		people 	= new boolean[numberOfPeople + 1];				// array of people
+		people[0] = false; 						// extra space in array (unrequired)
+		for (int i = 1; i <= numberOfPeople; i++) {
+			people[i] = true;					// make everyone alive initially
 		}
 	}
 
-	int nextPersonAlive (int n) {
-		return (n == size)? (nextPersonAlive(0)) : (people[n+1])? (n+1) : (nextPersonAlive((n+1)));
+	int nextPersonAlive (int n) {						// return the next person standing after 'n'
+		return (n == numberOfPeople)? (nextPersonAlive(0)) : (people[n+1])? (n+1) : (nextPersonAlive((n+1)));
+	}
+
+	int getSwordCarrier () {
+		return swordCarrier;
 	}
 
 	void kill (int n) {
@@ -27,34 +31,41 @@ class Puzzle {
 	}
 
 	void passSword () {
-		swordCarrier = nextPersonAlive(swordCarrier);
+		swordCarrier = nextPersonAlive(swordCarrier);			// pass the sword to the next person standing
 	}
 
-	int peopleAlive () {
+	int numberOfPeopleAlive () {							// get the number of people still alive
 		int c = 0;
-		for (int i = 1; i <= size; i++) {
+		for (int i = 1; i <= numberOfPeople; i++) {
 			c += (people[i])? 1 : 0;
 		}
 		return c;
 	}
 
-	void display () {
-		for (int i = 1; i <= size; i++) {
-			System.out.print(((people[i])? i : "X") + "\t");
+	void display () {							// display the array of people
+		for (int i = 1; i <= numberOfPeople; i++) {
+			System.out.print(((people[i])? ((i == swordCarrier)? ("[" + i + "]") : (" " + i)) : ("-" + i + "-")) + "\t");
 			System.out.print((i%10 == 0)? "\n" : "");
 		}
 		System.out.print("\n");
 	}
 
 	public static void main (String args[]) {
-		int size = (args.length == 2 || args.length == 1)? Integer.parseInt(args[0]) : 100;
-		int alive = (args.length == 2)? Integer.parseInt(args[1]) : 1;
-		Puzzle p = new Puzzle(size);
-		
-		while (p.peopleAlive() > alive) { 	// loop through people
+
+		int numberOfPeople = (args.length > 0)? Integer.parseInt(args[0]) : 100;	// get the number of people
+		int toBeKeptAlive = (args.length > 1)? Integer.parseInt(args[1]) : 1;		// get the number of people to be left standing
+
+		Puzzle p = new Puzzle(numberOfPeople);
+
+		while (p.numberOfPeopleAlive() > toBeKeptAlive) {		// loop through people
 			p.killPersonAfterSwordCarrier();
 			p.passSword();
 		}
-		p.display();
+
+		if (toBeKeptAlive == 1) {
+			System.out.print("Person carrying the Sword (last person standing): " + p.getSwordCarrier() + "\n");
+		} else {
+			p.display();
+		}
 	}
 }
