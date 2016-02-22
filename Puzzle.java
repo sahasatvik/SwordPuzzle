@@ -2,7 +2,7 @@
  *  Program to calculate and display the solution of the sword puzzle, as mentioned in README.md
  *
  *  Usage :
- *  	
+ *  
  *  	java Puzzle [number of people] [number of people to be kept alive]
  *
  *  
@@ -11,7 +11,7 @@
  *
  *  	-number-	->	dead person
  *  	 number		->	alive person
- *  	[number]	->	person carrying the swordCarrier
+ *  	[number]	->	person carrying the sword
  *
  */
 
